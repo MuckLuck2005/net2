@@ -1,0 +1,44 @@
+using System;
+
+class Program
+{
+    static void Main()
+    {
+        Console.WriteLine("Введіть розмірність масиву A:");
+        int N = int.Parse(Console.ReadLine());
+
+        Console.WriteLine("Введіть розмірність масиву B:");
+        int M = int.Parse(Console.ReadLine());
+
+        int[] A = new int[N];
+        int[] B = new int[M];
+
+        Console.WriteLine("Введіть елементи масиву A:");
+        for (int i = 0; i < N; i++)
+        {
+            Console.Write($"A[{i}]: ");
+            A[i] = int.Parse(Console.ReadLine());
+        }
+
+        Console.WriteLine("Введіть елементи масиву B:");
+        for (int i = 0; i < M; i++)
+        {
+            Console.Write($"B[{i}]: ");
+            B[i] = int.Parse(Console.ReadLine());
+        }
+
+        int[] C = new int[N + M];
+        Array.Copy(A, C, N);
+        Array.Copy(B, 0, C, N, M);
+
+        Array.Sort(C);
+        Array.Reverse(C);
+
+        Console.WriteLine("\nВідсортований масив C:");
+        foreach (var item in C)
+        {
+            Console.Write(item + " ");
+        }
+        Console.WriteLine();
+    }
+}

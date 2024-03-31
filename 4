@@ -1,0 +1,37 @@
+using System;
+
+class Program
+{
+    static void Main(string[] args)
+    {
+        Console.WriteLine("Оберіть варіант формули:");
+        Console.WriteLine("1. z = sin^2(x)");
+        Console.WriteLine("2. z = (log(x))^2");
+        Console.WriteLine("3. z = 1 / cos(x^3)");
+
+        int choice = Convert.ToInt32(Console.ReadLine());
+
+        Console.Write("Введіть значення x: ");
+        double x = Convert.ToDouble(Console.ReadLine());
+
+        double z = 0;
+
+        switch (choice)
+        {
+            case 1:
+                z = Math.Pow(Math.Sin(x), 2);
+                break;
+            case 2:
+                z = Math.Pow(Math.Log(x), 2);
+                break;
+            case 3:
+                z = 1 / Math.Cos(Math.Pow(x, 3));
+                break;
+            default:
+                Console.WriteLine("Неправильний варіант формули!");
+                return;
+        }
+
+        Console.WriteLine("Результат: z = " + z);
+    }
+}

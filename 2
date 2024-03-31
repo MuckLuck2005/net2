@@ -1,0 +1,51 @@
+using System;
+
+class Program
+{
+    static void Main()
+    {
+        Console.WriteLine("Введіть кількість рядків матриці:");
+        int rows = int.Parse(Console.ReadLine());
+
+        Console.WriteLine("Введіть кількість стовпців матриці:");
+        int cols = int.Parse(Console.ReadLine());
+
+        double[,] matrix = new double[rows, cols];
+
+        Console.WriteLine("Введіть елементи матриці:");
+        for (int i = 0; i < rows; i++)
+        {
+            for (int j = 0; j < cols; j++)
+            {
+                Console.Write($"matrix[{i},{j}]: ");
+                matrix[i, j] = double.Parse(Console.ReadLine());
+            }
+        }
+
+        double[] rowAverages = new double[rows];
+        for (int i = 0; i < rows; i++)
+        {
+            double rowSum = 0;
+            for (int j = 0; j < cols; j++)
+            {
+                rowSum += matrix[i, j];
+            }
+            rowAverages[i] = rowSum / cols;
+
+            for (int j = 0; j < cols; j++)
+            {
+                matrix[i, j] -= rowAverages[i];
+            }
+        }
+
+        Console.WriteLine("\nНова матриця після віднімання середнього арифметичного від кожного рядка:");
+        for (int i = 0; i < rows; i++)
+        {
+            for (int j = 0; j < cols; j++)
+            {
+                Console.Write(matrix[i, j] + "\t");
+            }
+            Console.WriteLine();
+        }
+    }
+}

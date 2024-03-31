@@ -1,0 +1,62 @@
+using System;
+
+class Program
+{
+    static void Main()
+    {
+        Console.WriteLine("Введіть кількість рядків матриці:");
+        int rows = int.Parse(Console.ReadLine());
+
+        Console.WriteLine("Введіть кількість стовпців матриці:");
+        int cols = int.Parse(Console.ReadLine());
+
+        double[,] matrix = new double[rows, cols];
+
+        Console.WriteLine("Введіть елементи матриці:");
+        for (int i = 0; i < rows; i++)
+        {
+            for (int j = 0; j < cols; j++)
+            {
+                Console.Write($"matrix[{i},{j}]: ");
+                matrix[i, j] = double.Parse(Console.ReadLine());
+            }
+        }
+
+        Console.WriteLine("Введіть елементи вектора:");
+
+        double[] vector = new double[cols];
+
+        for (int i = 0; i < cols; i++)
+        {
+            Console.Write($"vector[{i}]: ");
+            vector[i] = double.Parse(Console.ReadLine());
+        }
+
+        double[] result = MultiplyMatrixByVector(matrix, vector);
+
+        Console.WriteLine("\nРезультат множення матриці на вектор:");
+        for (int i = 0; i < rows; i++)
+        {
+            Console.WriteLine($"Рядок {i + 1}: {result[i]}");
+        }
+    }
+
+    static double[] MultiplyMatrixByVector(double[,] matrix, double[] vector)
+    {
+        int rows = matrix.GetLength(0);
+        int cols = matrix.GetLength(1);
+        double[] result = new double[rows];
+
+        for (int i = 0; i < rows; i++)
+        {
+            double sum = 0;
+            for (int j = 0; j < cols; j++)
+            {
+                sum += matrix[i, j] * vector[j];
+            }
+            result[i] = sum;
+        }
+
+        return result;
+    }
+}
